@@ -1,11 +1,9 @@
 import React from 'react';
 import { Button } from '../ui/Button';
+import { useContact } from '../../context/ContactContext';
 
 export const Hero: React.FC = () => {
-  const scrollToContact = () => {
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
+  const { openContactModal } = useContact();
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center pt-20 px-6 border-b border-gray-200 overflow-hidden bg-white transition-colors duration-300">
@@ -67,7 +65,7 @@ export const Hero: React.FC = () => {
             All solutions in one place.
           </p>
 
-          <Button onClick={scrollToContact} className="w-full sm:w-auto shadow-2xl border-none">
+          <Button onClick={openContactModal} className="w-full sm:w-auto shadow-2xl border-none">
             Schedule a Free Consultation
           </Button>
         </div>

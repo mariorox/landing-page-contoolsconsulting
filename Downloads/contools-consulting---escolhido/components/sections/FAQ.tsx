@@ -2,17 +2,14 @@ import React, { useState } from 'react';
 import { FAQS } from '../../constants';
 import { Button } from '../ui/Button';
 import { Plus, Minus } from 'lucide-react';
+import { useContact } from '../../context/ContactContext';
 
 export const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const { openContactModal } = useContact();
 
   const toggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
-  };
-
-  const scrollToContact = () => {
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -50,7 +47,7 @@ export const FAQ: React.FC = () => {
         </div>
 
         <div className="text-center">
-          <Button onClick={scrollToContact}>
+          <Button onClick={openContactModal}>
              Schedule a Free Consultation
           </Button>
         </div>

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '../ui/Button';
+import { useContact } from '../../context/ContactContext';
 
 export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { openContactModal } = useContact();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,9 +16,8 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToContact = () => {
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  const handleContactClick = () => {
+    openContactModal();
     setMobileMenuOpen(false);
   };
 
@@ -34,7 +35,7 @@ export const Header: React.FC = () => {
            <a href="#about" className="text-sm font-bold text-dark/70 hover:text-acid transition-colors">About</a>
            <a href="#faq" className="text-sm font-bold text-dark/70 hover:text-acid transition-colors">FAQ</a>
 
-           <Button onClick={scrollToContact} className="py-2 px-6 text-xs">Get Started</Button>
+           <Button onClick={handleContactClick} className="py-2 px-6 text-xs">Get Started</Button>
         </div>
 
         {/* Mobile Toggle */}
@@ -54,7 +55,7 @@ export const Header: React.FC = () => {
           <a href="#services" className="text-lg font-medium text-dark" onClick={() => setMobileMenuOpen(false)}>Services</a>
           <a href="#about" className="text-lg font-medium text-dark" onClick={() => setMobileMenuOpen(false)}>About</a>
           <a href="#faq" className="text-lg font-medium text-dark" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
-          <Button onClick={scrollToContact} fullWidth>Schedule Consultation</Button>
+          <Button onClick={handleContactClick} fullWidth>Schedule Consultation</Button>
         </div>
       )}
     </header>

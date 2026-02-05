@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { CLIENTS } from '../../constants';
 import { Button } from '../ui/Button';
+import { useContact } from '../../context/ContactContext';
 
 export const Clients: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
-
-  const scrollToContact = () => {
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
+  const { openContactModal } = useContact();
 
   // Duplicate clients for infinite loop effect (6 times for smooth loop)
   const duplicatedClients = [...CLIENTS, ...CLIENTS, ...CLIENTS, ...CLIENTS, ...CLIENTS, ...CLIENTS];
@@ -75,7 +72,7 @@ export const Clients: React.FC = () => {
 
       <div className="max-w-7xl mx-auto">
         <div className="text-center">
-          <Button onClick={scrollToContact}>
+          <Button onClick={openContactModal}>
              Schedule a Free Consultation
           </Button>
         </div>

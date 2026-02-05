@@ -23,12 +23,26 @@
       }
     </script>
     <style>
+      html {
+        overflow-x: hidden !important;
+        width: 100%;
+        max-width: 100vw;
+      }
+
       body {
         /* Default to dark mode colors initially to prevent flash, controlled by js later */
         background-color: #1D355D;
         color: #ffffff;
+        overflow-x: hidden !important;
+        width: 100%;
+        max-width: 100vw;
+      }
+
+      #root {
+        width: 100%;
         overflow-x: hidden;
       }
+
       .dark body {
         background-color: #1D355D;
         color: #ffffff;

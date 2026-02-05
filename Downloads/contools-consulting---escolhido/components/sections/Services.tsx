@@ -2,12 +2,10 @@ import React from 'react';
 import { SERVICES } from '../../constants';
 import { Button } from '../ui/Button';
 import { ArrowUpRight } from 'lucide-react';
+import { useContact } from '../../context/ContactContext';
 
 export const Services: React.FC = () => {
-  const scrollToContact = () => {
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
+  const { openContactModal } = useContact();
 
   return (
     <section id="services" className="py-0 border-b border-gray-200 transition-colors duration-300">
@@ -33,7 +31,7 @@ export const Services: React.FC = () => {
                 Comprehensive legal and administrative support tailored for international companies.
               </p>
             </div>
-            <Button onClick={scrollToContact} className="hidden lg:inline-flex">
+            <Button onClick={openContactModal} className="hidden lg:inline-flex">
               Schedule a Free Consultation
             </Button>
           </div>
@@ -42,8 +40,8 @@ export const Services: React.FC = () => {
         {/* Services List */}
         <div className="lg:col-span-8 bg-gray-50 transition-colors duration-300">
           {SERVICES.map((service, index) => (
-            <div 
-              key={service.id} 
+            <div
+              key={service.id}
               className="group border-b border-gray-200 p-8 lg:p-12 flex items-start justify-between hover:bg-white transition-colors cursor-default"
             >
               <div className="flex gap-6 items-baseline">
@@ -56,7 +54,7 @@ export const Services: React.FC = () => {
             </div>
           ))}
           <div className="p-8 lg:hidden bg-white">
-             <Button onClick={scrollToContact} fullWidth>
+             <Button onClick={openContactModal} fullWidth>
                 Schedule a Free Consultation
             </Button>
           </div>

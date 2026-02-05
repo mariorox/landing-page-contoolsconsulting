@@ -1,12 +1,10 @@
 import React from 'react';
 import { Button } from '../ui/Button';
 import { motion } from 'framer-motion';
+import { useContact } from '../../context/ContactContext';
 
 export const VideoSection: React.FC = () => {
-  const scrollToContact = () => {
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
+  const { openContactModal } = useContact();
 
   return (
     <section className="py-24 px-6 border-b border-gray-200 bg-white transition-colors duration-300 relative overflow-hidden">
@@ -57,7 +55,7 @@ export const VideoSection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <Button onClick={scrollToContact} className="bg-acid text-dark hover:bg-acid/90">
+          <Button onClick={openContactModal} className="bg-acid text-dark hover:bg-acid/90">
             Schedule a Free Consultation
           </Button>
         </motion.div>
